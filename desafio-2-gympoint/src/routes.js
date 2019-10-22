@@ -11,6 +11,6 @@ routes.post('/signin', SigninController.store);
 
 routes.use(auth);
 routes.post('/students', StudentController.store);
-// routes.get('/students', S)
+routes.put('/students/:id', StudentController.update);
 
 export default routes;
