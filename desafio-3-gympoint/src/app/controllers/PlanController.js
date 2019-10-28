@@ -42,6 +42,33 @@ class PlanController {
 
     return res.json({ plan });
   }
+
+  async update(req, res) {
+    const { id } = req.params;
+
+    const schema = Yup.object().shape({
+      title: Yup.string(),
+      duration: Yup.number(),
+      price: Yup.number(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      const errors = await schema.validate(req.body).catch(err => err.errors);
+      return res.status(400).json({ errors });
+    }
+
+    const plan = await Plan.findOne({ where: { id } });
+
+    const { title, duration, price, updated_at } = await plan.update(req.body);
+
+    return res.json({
+      id,
+      title,
+      duration,
+      price,
+      updated_at,
+    });
+  }
 }
 
 export default new PlanController();
