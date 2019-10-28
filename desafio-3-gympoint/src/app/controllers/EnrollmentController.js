@@ -40,6 +40,8 @@ class EnrollmentController {
       price,
     });
 
+    // TODO send email
+
     return res.json({
       id,
       end_date,
