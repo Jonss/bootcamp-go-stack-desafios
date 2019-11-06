@@ -1,8 +1,10 @@
 import React from 'react';
 import Comment from './Comment';
 
+import './Post.css'
+
 const Post = ({ post }) => (
-  <li key={post.id}>
+  <li key={post.id} className="post-container">
     <div>
       <p>{post.date}</p>
       <p>{post.content}</p>
